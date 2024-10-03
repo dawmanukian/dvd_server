@@ -29,6 +29,23 @@ const User = sequelize.define("User", {
     allowNull: false,
     defaultValue: 0,
   },
+  clickedDvd: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
+  scream: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  speed: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  dvdBox: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
   referral: {
     type: DataTypes.BIGINT,
     allowNull: true,
@@ -66,5 +83,13 @@ const Upgrade = sequelize.define("Upgrade", {
     allowNull: false,
   },
 });
+
+sequelize.sync({ alter: true })
+  .then(() => {
+    console.log("The table for the User model has been updated!");
+  })
+  .catch((error) => {
+    console.error("Unable to sync the database:", error);
+  });
 
 module.exports = { User, Task, Upgrade };

@@ -72,6 +72,62 @@ class UserController {
       next(error);
     }
   }
+  async clickDvd(req,res,next) {
+    try {
+      const { telegramId } = req.params
+      const { newNumber } = req.body
+      const clicked = await User.update({
+        clickedDvd: newNumber
+      }, {where: telegramId})
+
+      return res.json({success: true})
+
+    } catch (error) {
+      next(error)
+    }
+  }
+  async changeTimeScream(req,res,next) {
+    try {
+      const { telegramId } = req.params
+      const { currentTime } = req.body
+      const changed = await User.update({
+        scream: currentTime
+      }, {where: telegramId})
+
+      return res.json({success: true})
+
+    } catch (error) {
+      next(error)
+    }
+  }
+  async changeTimeDvdBox(req,res,next) {
+    try {
+      const { telegramId } = req.params
+      const { currentTime } = req.body
+      const changed = await User.update({
+        dvdBox: currentTime
+      }, {where: telegramId})
+
+      return res.json({success: true})
+
+    } catch (error) {
+      next(error)
+    }
+  }
+  async changeTimeSpeed(req,res,next) {
+    try {
+      const { telegramId } = req.params
+      const { currentTime } = req.body
+      const changed = await User.update({
+        speed: currentTime
+      }, {where: telegramId})
+
+      return res.json({success: true})
+
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 module.exports = new UserController();
